@@ -1,0 +1,38 @@
+/* Animations */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes ringProgress{from{stroke-dashoffset:var(--ring-circumference)}to{stroke-dashoffset:var(--ring-target)}}
+@keyframes glow{0%,100%{box-shadow:0 0 5px var(--clr-primary-glow)}50%{box-shadow:0 0 20px var(--clr-primary-glow),0 0 40px rgba(16,185,129,0.1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade-in{animation:fadeIn var(--dur-slow) var(--ease-smooth) forwards}
+.animate-fade-in-up{animation:fadeInUp var(--dur-slow) var(--ease-smooth) forwards}
+.animate-fade-in-down{animation:fadeInDown var(--dur-slow) var(--ease-smooth) forwards}
+.animate-scale-in{animation:scaleIn var(--dur-slow) var(--ease-spring) forwards}
+.animate-slide-up{animation:slideUp var(--dur-slow) var(--ease-smooth) forwards}
+.animate-pulse{animation:pulse 2s ease-in-out infinite}
+.animate-spin{animation:spin 1s linear infinite}
+.animate-bounce{animation:bounce 1.5s ease-in-out infinite}
+.animate-float{animation:float 3s ease-in-out infinite}
+.animate-glow{animation:glow 2s ease-in-out infinite}
+.stagger-1{animation-delay:0.05s}.stagger-2{animation-delay:0.1s}.stagger-3{animation-delay:0.15s}
+.stagger-4{animation-delay:0.2s}.stagger-5{animation-delay:0.25s}.stagger-6{animation-delay:0.3s}
+.page-transition-enter{opacity:0;transform:translateY(12px)}
+.page-transition-active{opacity:1;transform:translateY(0);transition:all var(--dur-slow) var(--ease-smooth)}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--clr-bg-tertiary);border-top-color:var(--clr-primary);border-radius:50%;animation:spin 0.8s linear infinite}
+.skeleton{background:linear-gradient(90deg,var(--clr-bg-secondary) 25%,var(--clr-bg-tertiary) 50%,var(--clr-bg-secondary) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm)}
+.skeleton-text{height:14px;margin-bottom:var(--sp-sm);border-radius:var(--radius-sm)}
+.skeleton-text:last-child{width:60%}
+.skeleton-circle{border-radius:50%}
+.ripple{position:relative;overflow:hidden}
+.ripple::after{content:'';position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,0.15) 10%,transparent 10.01%);background-repeat:no-repeat;background-position:50%;transform:scale(10);opacity:0;transition:transform 0.5s,opacity 1s}
+.ripple:active::after{transform:scale(0);opacity:0.3;transition:0s}
+.number-animate{display:inline-block;animation:countUp var(--dur-slow) var(--ease-smooth) forwards}

@@ -1,0 +1,45 @@
+/* Food Logger Styles */
+.search-container{position:relative;margin-bottom:var(--sp-lg)}
+.search-input{width:100%;padding:0.85rem 1rem 0.85rem 3rem;background:var(--clr-bg-secondary);border:1.5px solid var(--glass-border);border-radius:var(--radius-lg);font-size:var(--fs-base);transition:border-color var(--dur-normal),box-shadow var(--dur-normal)}
+.search-input:focus{border-color:var(--clr-primary);box-shadow:0 0 0 3px var(--clr-primary-glow)}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted)}
+.search-results{position:absolute;top:100%;left:0;right:0;margin-top:var(--sp-xs);background:var(--clr-bg-secondary);border:1px solid var(--glass-border);border-radius:var(--radius-md);max-height:300px;overflow-y:auto;z-index:var(--z-dropdown);box-shadow:var(--shadow-lg);display:none}
+.search-results.show{display:block}
+.search-result-item{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-md);cursor:pointer;transition:background var(--dur-fast)}
+.search-result-item:hover{background:rgba(255,255,255,0.05)}
+.search-result-item+.search-result-item{border-top:1px solid var(--glass-border)}
+.search-result-name{font-weight:500;font-size:var(--fs-sm)}
+.search-result-cal{font-size:var(--fs-xs);color:var(--clr-calories)}
+.search-result-serving{font-size:var(--fs-xs);color:var(--clr-text-muted)}
+.meal-type-selector{display:flex;gap:var(--sp-sm);margin-bottom:var(--sp-lg);overflow-x:auto;padding-bottom:var(--sp-xs)}
+.meal-type-btn{padding:0.5rem 1.2rem;border-radius:var(--radius-full);font-size:var(--fs-sm);font-weight:500;color:var(--clr-text-muted);background:var(--clr-bg-secondary);border:1.5px solid transparent;transition:all var(--dur-normal);white-space:nowrap}
+.meal-type-btn:hover{color:var(--clr-text-primary)}
+.meal-type-btn.active{color:var(--clr-primary-light);border-color:var(--clr-primary);background:rgba(16,185,129,0.1)}
+.logged-food-item{display:flex;align-items:center;gap:var(--sp-md);padding:var(--sp-md);border-radius:var(--radius-md);background:var(--clr-bg-secondary);border:1px solid var(--glass-border);margin-bottom:var(--sp-sm);transition:all var(--dur-normal)}
+.logged-food-item:hover{border-color:rgba(16,185,129,0.2)}
+.logged-food-emoji{font-size:1.5rem;width:40px;text-align:center}
+.logged-food-info{flex:1;min-width:0}
+.logged-food-info h5{font-size:var(--fs-sm);font-weight:600;margin-bottom:2px}
+.logged-food-info p{font-size:var(--fs-xs);color:var(--clr-text-muted)}
+.logged-food-macros{display:flex;gap:var(--sp-sm);font-size:var(--fs-xs)}
+.logged-food-macros span{padding:2px 6px;border-radius:4px}
+.macro-p{color:var(--clr-protein);background:rgba(239,68,68,0.1)}
+.macro-c{color:var(--clr-carbs);background:rgba(59,130,246,0.1)}
+.macro-f{color:var(--clr-fat);background:rgba(168,85,247,0.1)}
+.logged-food-cals{font-family:var(--font-heading);font-weight:700;font-size:var(--fs-sm);color:var(--clr-calories);white-space:nowrap}
+.logged-food-remove{width:28px;height:28px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--clr-text-muted);transition:all var(--dur-fast);flex-shrink:0}
+.logged-food-remove:hover{background:rgba(239,68,68,0.15);color:var(--clr-danger)}
+.portion-modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-sm);margin:var(--sp-md) 0}
+.portion-option{padding:var(--sp-md);border-radius:var(--radius-md);background:var(--clr-bg-tertiary);text-align:center;cursor:pointer;transition:all var(--dur-normal);border:1.5px solid transparent}
+.portion-option:hover{border-color:var(--clr-primary)}
+.portion-option.selected{border-color:var(--clr-primary);background:rgba(16,185,129,0.1)}
+.portion-option .size{font-size:1.5rem;margin-bottom:var(--sp-xs)}
+.portion-option .label{font-size:var(--fs-xs);color:var(--clr-text-secondary)}
+.daily-nutrition-bar{display:flex;gap:var(--sp-xs);margin-top:var(--sp-sm)}
+.daily-nutrition-bar div{height:6px;border-radius:var(--radius-full);transition:width 0.8s var(--ease-smooth)}
+.favorites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:var(--sp-sm)}
+.favorite-item{display:flex;flex-direction:column;align-items:center;gap:var(--sp-xs);padding:var(--sp-md);border-radius:var(--radius-md);background:var(--clr-bg-secondary);border:1px solid var(--glass-border);cursor:pointer;transition:all var(--dur-normal);text-align:center}
+.favorite-item:hover{border-color:var(--clr-primary);transform:translateY(-2px)}
+.favorite-item .emoji{font-size:1.8rem}
+.favorite-item .name{font-size:var(--fs-xs);font-weight:500}
+.favorite-item .cals{font-size:var(--fs-xs);color:var(--clr-calories)}
