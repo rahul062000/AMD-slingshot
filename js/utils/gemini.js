@@ -9,7 +9,7 @@ const GeminiAI = (() => {
   // In a real deployed app, this would be handled by a secure backend proxy.
   function getApiKey() {
     // Note: In a production environment, this should ideally be protected by a backend.
-    return 'AIzaSyCFKiloYFjXHY2YyymD5Dh28T6MJjDTpcg';
+    return '';
   }
 
   async function callGemini(promptText, imageBase64 = null) {
