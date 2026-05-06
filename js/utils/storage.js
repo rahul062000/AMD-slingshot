@@ -1,10 +1,10 @@
 /* ============================================================
-   NutriSense — Secure Storage Utility
+   Nutrilite — Secure Storage Utility
    XSS-safe localStorage with integrity checks & data validation
    ============================================================ */
 const NutriStore = (() => {
   'use strict';
-  const PREFIX = 'nutrisense_';
+  const PREFIX = 'nutrilite_';
   const VERSION = '1.0';
 
   // Simple obfuscation (not encryption, but deters casual inspection)

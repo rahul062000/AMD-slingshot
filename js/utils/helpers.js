@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Helpers
+   Nutrilite — Helpers
    Date utils, formatters, sanitizers, DOM helpers
    ============================================================ */
 const Helpers = (() => {

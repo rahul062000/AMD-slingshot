@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Insights Module
+   Nutrilite — Insights Module
    Weekly report, tips, achievements, recommendations
    ============================================================ */
 const Insights = (() => {
@@ -33,7 +33,10 @@ const Insights = (() => {
           </div>
         </div>
         <div class="card animate-fade-in-up stagger-2">
-          <div class="card-header"><h4 class="card-title">💡 Smart Recommendations</h4></div>
+          <div class="card-header">
+            <h4 class="card-title">💡 Smart Recommendations</h4>
+            <button class="btn btn-sm btn-secondary" id="ai-recommend">🤖 AI Recommend</button>
+          </div>
           <div class="flex flex-col gap-md" id="recommendations">
             ${recs.map(r => `
               <div class="tip-card">
@@ -41,6 +44,15 @@ const Insights = (() => {
                 <div><h5>${escapeHTML(r.title)}</h5><p>${escapeHTML(r.text)}</p></div>
               </div>`).join('')}
           </div>
+        </div>
+      </div>
+      <div class="card mb-lg animate-fade-in-up stagger-3">
+        <div class="card-header">
+          <h4 class="card-title">🧠 AI Behavior Analysis</h4>
+          <button class="btn btn-sm btn-primary" id="ai-analyze-btn">Analyze My Habits</button>
+        </div>
+        <div id="ai-behavior-result" class="mt-sm">
+          <p class="text-sm text-muted">Click the button above to let AI analyze your eating habits and trends over the past 7 days.</p>
         </div>
       </div>
       <div class="card mb-lg animate-fade-in-up stagger-3">
@@ -76,6 +88,53 @@ const Insights = (() => {
     renderTrends(weekData);
     renderSwaps();
     $('#refresh-suggest')?.addEventListener('click', renderSmartSuggestions);
+    
+    // AI Integration Listeners
+    $('#ai-recommend')?.addEventListener('click', async () => {
+      try {
+        Helpers.showToast('🤖 AI is thinking...', 'info');
+        const pastMeals = [];
+        for (let i = 0; i < 3; i++) {
+          const l = NutriStore.getObject('log_' + daysAgo(i));
+          if(l.meals) pastMeals.push(l.meals);
+        }
+        const profile = NutriStore.getObject('profile');
+        const aiRecs = await GeminiAI.getRecommendations(profile, pastMeals);
+        
+        const recContainer = $('#recommendations');
+        recContainer.innerHTML = \`
+          <div class="tip-card"><span style="font-size:1.5rem">🎯</span><div><h5>Habit Focus</h5><p>\${escapeHTML(aiRecs.habitReminder)}</p></div></div>
+          <div class="tip-card"><span style="font-size:1.5rem">🔄</span><div><h5>Healthy Alternatives</h5><p>\${aiRecs.healthyAlternatives.map(escapeHTML).join(', ')}</p></div></div>
+          <div class="tip-card"><span style="font-size:1.5rem">🍽️</span><div><h5>Meal Ideas</h5><p>\${aiRecs.mealSuggestions.map(escapeHTML).join(', ')}</p></div></div>
+          <div class="tip-card"><span style="font-size:1.5rem">🛒</span><div><h5>Grocery List</h5><p>\${aiRecs.groceryRecommendations.map(escapeHTML).join(', ')}</p></div></div>
+        \`;
+        Helpers.showToast('✅ AI Recommendations updated', 'success');
+      } catch(e) {
+        Helpers.showToast(e.message || 'AI failed', 'error');
+      }
+    });
+
+    $('#ai-analyze-btn')?.addEventListener('click', async () => {
+      try {
+        Helpers.showToast('🤖 AI analyzing behavior...', 'info');
+        const logs = [];
+        for (let i = 0; i < 7; i++) {
+          logs.push(NutriStore.getObject('log_' + daysAgo(i)));
+        }
+        const analysis = await GeminiAI.analyzeBehavior(logs);
+        const resEl = $('#ai-behavior-result');
+        resEl.innerHTML = \`
+          <div style="background:var(--clr-bg-secondary); padding:var(--sp-md); border-radius:var(--radius-md); border-left: 4px solid var(--clr-primary);">
+            <h5 class="mb-sm text-primary">\${escapeHTML(analysis.trendDetected)}</h5>
+            <p class="text-sm mb-sm">\${escapeHTML(analysis.analysis)}</p>
+            <div class="text-sm"><strong>💡 Actionable Insight:</strong> \${escapeHTML(analysis.actionableInsight)}</div>
+          </div>
+        \`;
+        Helpers.showToast('✅ AI Analysis complete', 'success');
+      } catch(e) {
+        Helpers.showToast(e.message || 'AI failed', 'error');
+      }
+    });
   }
 
   function getWeekData() {

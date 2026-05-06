@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Meal Planner Module
+   Nutrilite — Meal Planner Module
    Weekly meal planner with auto-generation
    ============================================================ */
 const Planner = (() => {

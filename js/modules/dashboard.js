@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Dashboard Module
+   Nutrilite — Dashboard Module
    Main dashboard with rings, meal timeline, streak, charts
    ============================================================ */
 const Dashboard = (() => {

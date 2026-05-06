@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — SVG Chart Renderer
+   Nutrilite — SVG Chart Renderer
    Custom charts: rings, bars, line charts
    ============================================================ */
 const Charts = (() => {

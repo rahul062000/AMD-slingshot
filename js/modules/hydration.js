@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Hydration Module
+   Nutrilite — Hydration Module
    Water tracking with visual bottle and glass interface
    ============================================================ */
 const Hydration = (() => {

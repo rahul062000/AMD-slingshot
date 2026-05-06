@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Food Logger Module
+   Nutrilite — Food Logger Module
    Search, log, manage daily food entries
    ============================================================ */
 const Logger = (() => {
@@ -27,7 +27,13 @@ const Logger = (() => {
       <div class="card mb-lg animate-fade-in-up stagger-2">
         <div class="search-container">
           <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" class="search-input" id="food-search" placeholder="Search foods... (e.g. chicken, banana, rice)" autocomplete="off" maxlength="100">
+          <div class="flex" style="width:100%">
+            <input type="text" class="search-input" id="food-search" placeholder="Search foods... (e.g. chicken, banana, rice)" autocomplete="off" maxlength="100" style="flex:1; border-top-right-radius:0; border-bottom-right-radius:0;">
+            <label class="btn btn-secondary" style="border-top-left-radius:0; border-bottom-left-radius:0; cursor:pointer; display:flex; align-items:center;">
+              📸 Scan
+              <input type="file" id="ai-scan-upload" accept="image/*" style="display:none;">
+            </label>
+          </div>
           <div class="search-results" id="search-results"></div>
         </div>
         <div class="meal-type-selector">
@@ -100,6 +106,39 @@ const Logger = (() => {
     });
     input.addEventListener('blur', () => setTimeout(() => results.classList.remove('show'), 200));
     input.addEventListener('focus', () => { if (input.value.trim().length >= 2) doSearch(input.value.trim()); });
+
+    $('#ai-scan-upload')?.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        showToast('🤖 AI is analyzing image...', 'info');
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          try {
+            const base64Image = event.target.result;
+            const aiData = await GeminiAI.analyzeFoodImage(base64Image);
+            const aiFood = {
+              id: 'ai_' + Date.now(),
+              name: aiData.mealName || 'AI Food',
+              emoji: '✨',
+              calories: aiData.estimatedCalories || 0,
+              protein: aiData.macros?.protein || 0,
+              carbs: aiData.macros?.carbs || 0,
+              fat: aiData.macros?.fat || 0,
+              serving: 1,
+              servingUnit: 'serving'
+            };
+            openPortionModal(aiFood);
+            showToast('✅ AI Analysis complete!', 'success');
+          } catch (err) {
+            showToast(err.message || 'AI analysis failed', 'error');
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        showToast('Error reading image', 'error');
+      }
+    });
   }
 
   function openPortionModal(food) {

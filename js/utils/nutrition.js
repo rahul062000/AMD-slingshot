@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Nutrition Calculator
+   Nutrilite — Nutrition Calculator
    TDEE, BMR, macro targets, calorie math
    ============================================================ */
 const NutriCalc = (() => {

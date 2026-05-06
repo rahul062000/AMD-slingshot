@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Food Database
+   Nutrilite — Food Database
    ~200 common foods with full macro data (per standard serving)
    Format: { id, name, emoji, category, serving, servingUnit, calories, protein, carbs, fat, fiber }
    ============================================================ */

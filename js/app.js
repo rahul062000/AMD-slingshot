@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — App Core
+   Nutrilite — App Core
    Router, navigation, initialization, security headers
    ============================================================ */
 const App = (() => {
@@ -30,7 +30,7 @@ const App = (() => {
       <nav class="sidebar hide-mobile" id="sidebar">
         <div class="sidebar-brand">
           <div class="card-icon">🥗</div>
-          <h2>NutriSense</h2>
+          <h2>Nutrilite</h2>
         </div>
         <div class="sidebar-nav" id="sidebar-nav">
           ${Object.entries(PAGES).map(([key, p]) => `
@@ -107,7 +107,7 @@ const App = (() => {
     // Update title
     const titleEl = $('#topbar-title');
     if (titleEl) titleEl.textContent = PAGES[page].title;
-    document.title = `NutriSense — ${PAGES[page].title}`;
+    document.title = `Nutrilite — ${PAGES[page].title}`;
     // Render page with transition
     const content = $('#page-content');
     if (!content) return;

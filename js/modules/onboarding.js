@@ -1,5 +1,5 @@
 /* ============================================================
-   NutriSense — Onboarding Module
+   Nutrilite — Onboarding Module
    Multi-step profile setup wizard
    ============================================================ */
 const Onboarding = (() => {
@@ -66,7 +66,7 @@ const Onboarding = (() => {
     el.innerHTML = `
       <div class="text-center" style="margin-bottom:var(--sp-xl)">
         <div style="font-size:4rem;margin-bottom:var(--sp-md)" class="animate-float">🥗</div>
-        <h2 class="text-gradient">Welcome to NutriSense</h2>
+        <h2 class="text-gradient">Welcome to Nutrilite</h2>
         <p style="margin-top:var(--sp-sm)">Your smart companion for healthier eating habits. Let's set up your profile in just a few steps.</p>
       </div>
       <div class="input-group mb-md">
